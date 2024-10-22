@@ -21,7 +21,7 @@ class Clientes:
     def consulta(self, datos):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="select nombre_cliente, apellido_cliente, dni_cliente, email, telefono from articulos where codigo=%s"
+        sql="select nombre_cliente, apellido_cliente, dni_cliente, email, telefono from clientes where codigo=%s"
         cursor.execute(sql, datos)
         cone.close()
         return cursor.fetchall()
@@ -29,7 +29,7 @@ class Clientes:
     def recuperar_todos(self):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="select id_cliente, nombre_cliente, apellido_cliente, dni_cliente, email, telefono from articulos"
+        sql="select id_cliente, nombre_cliente, apellido_cliente, dni_cliente, email, telefono from clientes"
         cursor.execute(sql)
         cone.close()
         return cursor.fetchall()

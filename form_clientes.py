@@ -150,7 +150,13 @@ class FormularioClientes:
         respuesta=self.cliente1.recuperar_todos()
         self.scrolledtext1.delete("1.0", tk.END)        
         for fila in respuesta:
-            self.scrolledtext1.insert(tk.END, "código:"+str(fila[0])+"\nnombre:"+fila[1]+"\napellido:"+str(fila[2])+"\ndni:"+str(fila[3])+"\nemail:"+str(fila[4])+"\ntelefonoo:"+str(fila[5])+"\n\n")
+            self.scrolledtext1.insert(tk.END, "código:"+str(fila[0])+
+                                      "\nnombre:"+str(fila[1])+
+                                      "\napellido:"+str(fila[2])+
+                                      "\ndni:"+str(fila[3])+
+                                      "\nemail:"+str(fila[4])+
+                                      "\ntelefonoo:"+str(fila[5])+
+                                      "\n\n")
 
 
 aplicacion1=FormularioClientes()
