@@ -155,7 +155,7 @@ class FormularioClientes:
                                       "\napellido:"+str(fila[2])+
                                       "\ndni:"+str(fila[3])+
                                       "\nemail:"+str(fila[4])+
-                                      "\ntelefonoo:"+str(fila[5])+
+                                      "\ntelefono:"+str(fila[5])+
                                       "\n\n")
 
 

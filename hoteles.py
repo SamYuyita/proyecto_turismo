@@ -21,7 +21,7 @@ class Hoteles:
     def consulta(self, datos):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="select descripcion_hotel, cant_habitaciones from hoteles where codigo=%s"
+        sql="select descripcion_hotel, cant_habitaciones from hoteles where id_hotel=%s"
         cursor.execute(sql, datos)
         cone.close()
         return cursor.fetchall()

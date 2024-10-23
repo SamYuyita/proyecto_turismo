@@ -21,7 +21,7 @@ class Agencias:
     def consulta(self, datos):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="select cant_empleados, direccion from agencias where codigo=%s"
+        sql="select cant_empleados, direccion from agencias where id_agencia=%s"
         cursor.execute(sql, datos)
         cone.close()
         return cursor.fetchall()

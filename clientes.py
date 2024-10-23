@@ -21,7 +21,7 @@ class Clientes:
     def consulta(self, datos):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="select nombre_cliente, apellido_cliente, dni_cliente, email, telefono from clientes where codigo=%s"
+        sql="select nombre_cliente, apellido_cliente, dni_cliente, email, telefono from clientes where id_cliente=%s"
         cursor.execute(sql, datos)
         cone.close()
         return cursor.fetchall()
