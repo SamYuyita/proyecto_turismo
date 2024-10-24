@@ -1,6 +1,6 @@
 import mysql.connector
 
-class Agencias:
+class Mayoristas:
 
     def abrir(self):
         conexion=mysql.connector.connect(host="localhost", 
@@ -13,7 +13,7 @@ class Agencias:
     def alta(self, datos):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="insert into agencias(cant_empleados, direccion) values (%s,%s)"
+        sql="insert into mayoristas(nombre_mayorista, facturacion_anual) values (%s,%s)"
         cursor.execute(sql, datos)
         cone.commit()
         cone.close()
@@ -21,7 +21,7 @@ class Agencias:
     def consulta(self, datos):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="select cant_empleados, direccion from agencias where id_agencia=%s"
+        sql="select nombre_mayorista, facturacion_anual from mayoristas where id_mayorista=%s"
         cursor.execute(sql, datos)
         cone.close()
         return cursor.fetchall()
@@ -29,7 +29,7 @@ class Agencias:
     def recuperar_todos(self):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="select id_agencia, cant_empleados, direccion from agencias"
+        sql="select id_mayorista, nombre_mayorista, facturacion_anual from mayoristas"
         cursor.execute(sql)
         cone.close()
         return cursor.fetchall()

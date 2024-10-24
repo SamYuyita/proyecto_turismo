@@ -33,3 +33,21 @@ class Clientes:
         cursor.execute(sql)
         cone.close()
         return cursor.fetchall()
+    
+    def baja(self, datos):
+        cone=self.abrir()
+        cursor=cone.cursor()
+        sql="delete from clientes where codigo=%s"
+        cursor.execute(sql, datos)
+        cone.commit()
+        cone.close()
+        return cursor.rowcount # retornamos la cantidad de filas borradas
+
+    def modificacion(self, datos):
+        cone=self.abrir()
+        cursor=cone.cursor()
+        sql="update clientes set nombre_cliente=%s, apellido_cliente=%s, dni_cliente=%s, email=%s, telefono=%s where id_cliente=%s"
+        cursor.execute(sql, datos)
+        cone.commit()
+        cone.close()
+        return cursor.rowcount # retornamos la cantidad de filas modificadas
