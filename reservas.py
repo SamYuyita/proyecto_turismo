@@ -35,6 +35,14 @@ class Reservas:
         cone.close()
         return cursor.fetchall()
     
+    def obtener_datos(self):
+        cone=self.abrir()
+        cursor=cone.cursor()
+        cursor.execute("SELECT dni_cliente FROM clientes")
+        resultados = cursor.fetchall()
+        cone.close()
+        return [fila[0] for fila in resultados]
+    
     # Función para buscar cliente por DNI
     def buscar_cliente_por_dni(self, dni_cliente):
         cone=self.abrir()
@@ -50,3 +58,5 @@ class Reservas:
             return None  # El cliente no existe
     # lastrowid' que almacena el código de artículo que se acaba de generar
     # cursor.lastrowid
+    
+    

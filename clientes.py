@@ -51,3 +51,4 @@ class Clientes:
         cone.commit()
         cone.close()
         return cursor.rowcount # retornamos la cantidad de filas modificadas
+    

@@ -9,6 +9,7 @@ class FormularioCircuitos:
         self.ventana1=tk.Tk()
         self.ventana1.title("Mayoristas")
         self.ventana1.state('zoomed') # Maximiza la ventana
+        self.ventana1.configure(bg='gray')
         
         self.circuito1=circuitos.Circuitos()
         self.cuaderno1 = ttk.Notebook(self.ventana1)

@@ -9,6 +9,7 @@ class FormularioAgencias:
         self.ventana1=tk.Tk()
         self.ventana1.title("Agencias")
         self.ventana1.state('zoomed') # Maximiza la ventana
+        self.ventana1.configure(bg='gray')
         
         self.agencia1=agencias.Agencias()
         self.cuaderno1 = ttk.Notebook(self.ventana1)

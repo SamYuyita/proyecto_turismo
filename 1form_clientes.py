@@ -10,6 +10,7 @@ class FormularioClientes:
         self.ventana1=tk.Tk()
         self.ventana1.title("Clientes")
         self.ventana1.state('zoomed') # Maximiza la ventana
+        self.ventana1.configure(bg='gray')
         
         self.cliente1=clientes.Clientes()
         self.cuaderno1 = ttk.Notebook(self.ventana1)
@@ -20,12 +21,12 @@ class FormularioClientes:
         self.borrado()
         self.modificar()
         
-        self.cuaderno1.grid(column=0, row=0, padx=550, pady=100)
+        self.cuaderno1.grid(column=0, row=0, padx=450, pady=100)
         self.ventana1.mainloop()
 
     def carga_clientes(self):
         self.pagina1 = ttk.Frame(self.cuaderno1)
-        self.cuaderno1.add(self.pagina1, text="Carga de clientes")
+        self.cuaderno1.add(self.pagina1, text="Cargar cliente")
         
         self.labelframe1=ttk.LabelFrame(self.pagina1, text="Cliente")        
         self.labelframe1.grid(column=0, row=0, padx=5, pady=10)
@@ -75,7 +76,7 @@ class FormularioClientes:
 
     def consulta_por_codigo(self):
         self.pagina2 = ttk.Frame(self.cuaderno1)
-        self.cuaderno1.add(self.pagina2, text="Consulta por código")
+        self.cuaderno1.add(self.pagina2, text="Consultar por código")
         
         self.labelframe2=ttk.LabelFrame(self.pagina2, text="Cliente")
         self.labelframe2.grid(column=0, row=0, padx=5, pady=10)
@@ -162,7 +163,7 @@ class FormularioClientes:
 
     def borrado(self):
         self.pagina4 = ttk.Frame(self.cuaderno1)
-        self.cuaderno1.add(self.pagina4, text="Borrado de clientes")
+        self.cuaderno1.add(self.pagina4, text="Borrar cliente")
         
         self.labelframe4=ttk.LabelFrame(self.pagina4, text="Cliente")        
         self.labelframe4.grid(column=0, row=0, padx=5, pady=10)

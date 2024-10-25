@@ -9,6 +9,7 @@ class FormularioReservas:
         self.ventana1=tk.Tk()
         self.ventana1.title("Reservas")
         self.ventana1.state('zoomed') # Maximiza la ventana
+        self.ventana1.configure(bg='gray')
         
         self.reserva1=reservas.Reservas()
         self.cuaderno1 = ttk.Notebook(self.ventana1)
@@ -39,15 +40,26 @@ class FormularioReservas:
         self.entrydireccionc=ttk.Entry(self.labelframe1, textvariable=self.direccionc)
         self.entrydireccionc.grid(column=1, row=1, padx=4, pady=4)
         
+        self.label2=ttk.Label(self.labelframe1, text="selecione su DNI:")    
+        self.label2.grid(column=0, row=2, padx=4, pady=4)
+        self.comboboxdni=ttk.Combobox(self.labelframe1, state="readonly")
+        self.comboboxdni.grid(column=1, row=2, padx=4, pady=4)
+        self.poblar_dnis()  # Poblar los DNIs en el combobox
+        
         self.boton1=ttk.Button(self.labelframe1, text="Confirmar", command=self.agregar)
-        self.boton1.grid(column=1, row=2, padx=4, pady=4)
+        self.boton1.grid(column=1, row=3, padx=4, pady=4)
+        
+    def poblar_dnis(self):
+        dnis = self.reserva1.obtener_datos()  # Obtener lista de DNIs desde reservas
+        self.comboboxdni['values'] = dnis
 
     def agregar(self):
-        datos=(self.cantempc.get(), self.direccionc.get())
+        datos=(self.cantempc.get(), self.direccionc.get(), self.comboboxdni.get())
         self.reserva1.alta(datos)
         mb.showinfo("Información", "Los datos fueron cargados")
         self.cantempc.set("")
         self.direccionc.set("")
+        self.comboboxdni.set("")
 
     def consulta_por_codigo(self):
         self.pagina2 = ttk.Frame(self.cuaderno1)
