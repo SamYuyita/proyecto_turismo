@@ -33,3 +33,12 @@ class Hoteles:
         cursor.execute(sql)
         cone.close()
         return cursor.fetchall()
+    
+    def baja(self, datos):
+        cone=self.abrir()
+        cursor=cone.cursor()
+        sql="delete from hoteles where codigo=%s"
+        cursor.execute(sql, datos)
+        cone.commit()
+        cone.close()
+        return cursor.rowcount # retornamos la cantidad de filas borradas

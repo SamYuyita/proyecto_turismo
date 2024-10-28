@@ -17,6 +17,7 @@ class FormularioCircuitos:
         self.carga_circuitos()
         self.consulta_por_codigo()
         self.listado_completo()
+        self.borrado()
         
         self.cuaderno1.grid(column=0, row=0, padx=550, pady=100)
         self.ventana1.mainloop()
@@ -126,5 +127,28 @@ class FormularioCircuitos:
                                       +"\ndenominacion:"+str(fila[1])
                                       +"\ncant asistencia anual:"+str(fila[2])+"\n\n")
 
+    def borrado(self):
+        self.pagina4 = ttk.Frame(self.cuaderno1)
+        self.cuaderno1.add(self.pagina4, text="Borrar circuito")
+        
+        self.labelframe4=ttk.LabelFrame(self.pagina4, text="Circuito")        
+        self.labelframe4.grid(column=0, row=0, padx=5, pady=10)
+        
+        self.label1=ttk.Label(self.labelframe4, text="Código:")
+        self.label1.grid(column=0, row=0, padx=4, pady=4)
+        self.codigoborra=tk.StringVar()
+        self.entryborra=ttk.Entry(self.labelframe4, textvariable=self.codigoborra)
+        self.entryborra.grid(column=1, row=0, padx=4, pady=4)
+        
+        self.boton1=ttk.Button(self.labelframe4, text="Borrar", command=self.borrar)
+        self.boton1.grid(column=1, row=1, padx=4, pady=4)
+
+    def borrar(self):
+        datos=(self.codigoborra.get(), )
+        cantidad=self.circuito1.baja(datos)
+        if cantidad==1:
+            mb.showinfo("Información", "Se borró el circuito con dicho código")
+        else:
+            mb.showinfo("Información", "No existe un circuito con dicho código")
 
 aplicacion1=FormularioCircuitos()
