@@ -40,8 +40,18 @@ class FormularioCircuitos:
         self.entrydireccionc=ttk.Entry(self.labelframe1, textvariable=self.direccionc)
         self.entrydireccionc.grid(column=1, row=1, padx=4, pady=4)
         
+        self.label3=ttk.Label(self.labelframe1, text="Codigo ciudad:")    
+        self.label3.grid(column=0, row=2, padx=4, pady=4)
+        self.comboboxciudad=ttk.Combobox(self.labelframe1, state="readonly")
+        self.comboboxciudad.grid(column=1, row=2, padx=4, pady=4)
+        self.poblar_ciudades()  # Poblar las ciudades en el combobox
+        
         self.boton1=ttk.Button(self.labelframe1, text="Confirmar", command=self.agregar)
-        self.boton1.grid(column=1, row=2, padx=4, pady=4)
+        self.boton1.grid(column=1, row=3, padx=4, pady=4)
+        
+    def poblar_ciudades(self):
+        ciudades = self.circuito1.obtener_ciudades()  # Obtener lista de ciudades desde circuito
+        self.comboboxciudad['values'] = ciudades
 
     def agregar(self):
         datos=(self.cantempc.get(), self.direccionc.get())
@@ -49,6 +59,12 @@ class FormularioCircuitos:
         mb.showinfo("Información", "Los datos fueron cargados")
         self.cantempc.set("")
         self.direccionc.set("")
+        
+    def agregar_ciudad(self):
+        datosciudad=(self.comboboxciudad.get())
+        self.circuito1.alta_ciudad(datosciudad)
+        mb.showinfo("Información", "Los datos fueron cargados")
+        self.comboboxciudad.set("")
 
     def consulta_por_codigo(self):
         self.pagina2 = ttk.Frame(self.cuaderno1)

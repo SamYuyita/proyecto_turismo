@@ -26,7 +26,6 @@ class Agencias:
         cone.commit()
         cone.close()
 
-
     def consulta(self, datos):
         cone=self.abrir()
         cursor=cone.cursor()
@@ -50,4 +49,3 @@ class Agencias:
         resultados = cursor.fetchall()
         cone.close()
         return [fila[0] for fila in resultados]
-    

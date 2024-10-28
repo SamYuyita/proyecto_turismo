@@ -17,6 +17,14 @@ class Circuitos:
         cursor.execute(sql, datos)
         cone.commit()
         cone.close()
+        
+    def alta_ciudad(self, datosciudad):
+        cone=self.abrir()
+        cursor=cone.cursor()
+        sql="insert into circuitos_ciudades(fk_id_ciudad) values (%s)"
+        cursor.execute(sql, datosciudad)
+        cone.commit()
+        cone.close()
 
     def consulta(self, datos):
         cone=self.abrir()
@@ -33,3 +41,11 @@ class Circuitos:
         cursor.execute(sql)
         cone.close()
         return cursor.fetchall()
+    
+    def obtener_ciudades(self):
+        cone=self.abrir()
+        cursor=cone.cursor()
+        cursor.execute("SELECT id_ciudad FROM ciudades")
+        resultados = cursor.fetchall()
+        cone.close()
+        return [fila[0] for fila in resultados]
