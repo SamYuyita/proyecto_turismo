@@ -17,6 +17,14 @@ class Mayoristas:
         cursor.execute(sql, datos)
         cone.commit()
         cone.close()
+        
+    def alta_agencia(self, datosagencia):
+        cone=self.abrir()
+        cursor=cone.cursor()
+        sql="insert into agencias_mayoristas(fk_id_agencia) values (%s)"
+        cursor.execute(sql, datosagencia)
+        cone.commit()
+        cone.close()
 
     def consulta(self, datos):
         cone=self.abrir()
@@ -33,3 +41,12 @@ class Mayoristas:
         cursor.execute(sql)
         cone.close()
         return cursor.fetchall()
+    
+    def obtener_agencias(self):
+        cone=self.abrir()
+        cursor=cone.cursor()
+        cursor.execute("SELECT id_agencia FROM agencias")
+        resultados = cursor.fetchall()
+        cone.close()
+        return [fila[0] for fila in resultados]
+    

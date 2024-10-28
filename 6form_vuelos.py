@@ -41,14 +41,34 @@ class FormularioVuelos:
         self.entryhorac=ttk.Entry(self.labelframe1, textvariable=self.horac)
         self.entryhorac.grid(column=1, row=1, padx=4, pady=4)
         
-        self.label2=ttk.Label(self.labelframe1, text="N de asiento:")
-        self.label2.grid(column=0, row=2, padx=4, pady=4)
+        self.label3=ttk.Label(self.labelframe1, text="N de asiento:")
+        self.label3.grid(column=0, row=2, padx=4, pady=4)
         self.asientoc=tk.StringVar()
         self.entryasientoc=ttk.Entry(self.labelframe1, textvariable=self.asientoc)
         self.entryasientoc.grid(column=1, row=2, padx=4, pady=4)
         
+        self.label4=ttk.Label(self.labelframe1, text="Codigo ap salida:")    
+        self.label4.grid(column=0, row=3, padx=4, pady=4)
+        self.comboboxaps=ttk.Combobox(self.labelframe1, state="readonly")
+        self.comboboxaps.grid(column=1, row=3, padx=4, pady=4)
+        self.poblar_aeropuertos_salida()  # Poblar los aeropuertos en el combobox
+        
+        self.label5=ttk.Label(self.labelframe1, text="Codigo ap destino:")    
+        self.label5.grid(column=0, row=4, padx=4, pady=4)
+        self.comboboxapd=ttk.Combobox(self.labelframe1, state="readonly")
+        self.comboboxapd.grid(column=1, row=4, padx=4, pady=4)
+        self.poblar_aeropuertos_destino()
+        
         self.boton1=ttk.Button(self.labelframe1, text="Confirmar", command=self.agregar)
-        self.boton1.grid(column=1, row=3, padx=4, pady=4)
+        self.boton1.grid(column=1, row=5, padx=4, pady=4)
+        
+    def poblar_aeropuertos_salida(self):
+        aeropuertos = self.vuelo1.obtener_aeropuertos()  # Obtener lista de aeropuertos desde reservas
+        self.comboboxaps['values'] = aeropuertos
+        
+    def poblar_aeropuertos_destino(self):
+        aeropuertos = self.vuelo1.obtener_aeropuertos()  # Obtener lista de aeropuertos desde reservas
+        self.comboboxapd['values'] = aeropuertos
 
     def agregar(self):
         datos=(self.descripcionc.get(), self.horac.get(), self.asientoc.get())

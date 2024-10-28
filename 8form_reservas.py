@@ -28,38 +28,82 @@ class FormularioReservas:
         self.labelframe1=ttk.LabelFrame(self.pagina1, text="Reservas")        
         self.labelframe1.grid(column=0, row=0, padx=5, pady=10)
         
-        self.label1=ttk.Label(self.labelframe1, text="Asiento del vuelo:")
+        self.label1=ttk.Label(self.labelframe1, text="Codigo circuito:")    
         self.label1.grid(column=0, row=0, padx=4, pady=4)
-        self.cantempc=tk.StringVar()
-        self.entrycantempc=ttk.Entry(self.labelframe1, textvariable=self.cantempc)
-        self.entrycantempc.grid(column=1, row=0, padx=4, pady=4)
+        self.comboboxcircuito=ttk.Combobox(self.labelframe1, state="readonly")
+        self.comboboxcircuito.grid(column=1, row=0, padx=4, pady=4)
+        self.poblar_circuitos()  # Poblar los circuitos en el combobox
         
-        self.label2=ttk.Label(self.labelframe1, text="Fecha:")    
+        self.label2=ttk.Label(self.labelframe1, text="Codigo hotel:")    
         self.label2.grid(column=0, row=1, padx=4, pady=4)
-        self.direccionc=tk.StringVar()
-        self.entrydireccionc=ttk.Entry(self.labelframe1, textvariable=self.direccionc)
-        self.entrydireccionc.grid(column=1, row=1, padx=4, pady=4)
+        self.comboboxhotel=ttk.Combobox(self.labelframe1, state="readonly")
+        self.comboboxhotel.grid(column=1, row=1, padx=4, pady=4)
+        self.poblar_hoteles()  # Poblar los hoteles en el combobox
         
-        self.label2=ttk.Label(self.labelframe1, text="selecione su DNI:")    
-        self.label2.grid(column=0, row=2, padx=4, pady=4)
+        self.label3=ttk.Label(self.labelframe1, text="Codigo vuelo:")    
+        self.label3.grid(column=0, row=2, padx=4, pady=4)
+        self.comboboxvuelo=ttk.Combobox(self.labelframe1, state="readonly")
+        self.comboboxvuelo.grid(column=1, row=2, padx=4, pady=4)
+        self.poblar_vuelos()  # Poblar los vuelos en el combobox
+        
+        self.label4=ttk.Label(self.labelframe1, text="Asiento del vuelo:")
+        self.label4.grid(column=0, row=3, padx=4, pady=4)
+        self.asientoc=tk.StringVar()
+        self.entryasientoc=ttk.Entry(self.labelframe1, textvariable=self.asientoc)
+        self.entryasientoc.grid(column=1, row=3, padx=4, pady=4)
+        
+        self.label5=ttk.Label(self.labelframe1, text="Fecha:")    
+        self.label5.grid(column=0, row=4, padx=4, pady=4)
+        self.fechac=tk.StringVar()
+        self.entryfechac=ttk.Entry(self.labelframe1, textvariable=self.fechac)
+        self.entryfechac.grid(column=1, row=4, padx=4, pady=4)
+        
+        self.label6=ttk.Label(self.labelframe1, text="Codigo cliente:")    
+        self.label6.grid(column=0, row=5, padx=4, pady=4)
         self.comboboxdni=ttk.Combobox(self.labelframe1, state="readonly")
-        self.comboboxdni.grid(column=1, row=2, padx=4, pady=4)
-        self.poblar_dnis()  # Poblar los DNIs en el combobox
+        self.comboboxdni.grid(column=1, row=5, padx=4, pady=4)
+        self.poblar_clientes()  # Poblar los DNIs en el combobox
+        
+        self.label7=ttk.Label(self.labelframe1, text="Codigo agencia:")    
+        self.label7.grid(column=0, row=6, padx=4, pady=4)
+        self.comboboxagencia=ttk.Combobox(self.labelframe1, state="readonly")
+        self.comboboxagencia.grid(column=1, row=6, padx=4, pady=4)
+        self.poblar_agencias()  # Poblar las agencias en el combobox
         
         self.boton1=ttk.Button(self.labelframe1, text="Confirmar", command=self.agregar)
-        self.boton1.grid(column=1, row=3, padx=4, pady=4)
+        self.boton1.grid(column=1, row=7, padx=4, pady=4)
+    
+    def poblar_circuitos(self):
+        circuitos = self.reserva1.obtener_circuitos()  # Obtener lista de circuitos desde reservas
+        self.comboboxcircuito['values'] = circuitos
         
-    def poblar_dnis(self):
-        dnis = self.reserva1.obtener_datos()  # Obtener lista de DNIs desde reservas
-        self.comboboxdni['values'] = dnis
+    def poblar_hoteles(self):
+        hoteles = self.reserva1.obtener_hoteles()  # Obtener lista de hoteles desde reservas
+        self.comboboxhotel['values'] = hoteles
+    
+    def poblar_vuelos(self):
+        vuelos = self.reserva1.obtener_vuelos()  # Obtener lista de vuelos desde reservas
+        self.comboboxvuelo['values'] = vuelos
+        
+    def poblar_clientes(self):
+        clientes = self.reserva1.obtener_clientes()  # Obtener lista de clientes desde reservas
+        self.comboboxdni['values'] = clientes
+        
+    def poblar_agencias(self):
+        agencias = self.reserva1.obtener_agencias()  # Obtener lista de agencias desde reservas
+        self.comboboxagencia['values'] = agencias
 
     def agregar(self):
-        datos=(self.cantempc.get(), self.direccionc.get(), self.comboboxdni.get())
+        datos=(self.comboboxcircuito.get(), self.comboboxhotel.get(), self.comboboxvuelo.get(), self.asientoc.get(), self.fechac.get(), self.comboboxdni.get(), self.comboboxagencia.get())
         self.reserva1.alta(datos)
         mb.showinfo("Información", "Los datos fueron cargados")
-        self.cantempc.set("")
-        self.direccionc.set("")
+        self.comboboxcircuito.set("")
+        self.comboboxhotel.set("")
+        self.comboboxvuelo.set("")
+        self.asientoc.set("")
+        self.fechac.set("")
         self.comboboxdni.set("")
+        self.comboboxagencia.set("")
 
     def consulta_por_codigo(self):
         self.pagina2 = ttk.Frame(self.cuaderno1)

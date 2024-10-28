@@ -13,7 +13,7 @@ class Aeropuertos:
     def alta(self, datos):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="insert into aeropuertos(nombre_ap, cant_vuelos_prom) values (%s,%s)"
+        sql="insert into aeropuertos(nombre_ap, cant_vuelos_prom, fk_id_pais) values (%s,%s,%s)"
         cursor.execute(sql, datos)
         cone.commit()
         cone.close()
@@ -33,3 +33,11 @@ class Aeropuertos:
         cursor.execute(sql)
         cone.close()
         return cursor.fetchall()
+    
+    def obtener_paises(self):
+        cone=self.abrir()
+        cursor=cone.cursor()
+        cursor.execute("SELECT id_pais FROM paises")
+        resultados = cursor.fetchall()
+        cone.close()
+        return [fila[0] for fila in resultados]

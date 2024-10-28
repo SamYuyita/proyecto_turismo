@@ -40,8 +40,18 @@ class FormularioAgencias:
         self.entrydireccionc=ttk.Entry(self.labelframe1, textvariable=self.direccionc)
         self.entrydireccionc.grid(column=1, row=1, padx=4, pady=4)
         
+        self.label3=ttk.Label(self.labelframe1, text="Codigo mayorista:")    
+        self.label3.grid(column=0, row=2, padx=4, pady=4)
+        self.comboboxmayorista=ttk.Combobox(self.labelframe1, state="readonly")
+        self.comboboxmayorista.grid(column=1, row=2, padx=4, pady=4)
+        self.poblar_mayoristas()  # Poblar las mayoristas en el combobox
+        
         self.boton1=ttk.Button(self.labelframe1, text="Confirmar", command=self.agregar)
-        self.boton1.grid(column=1, row=2, padx=4, pady=4)
+        self.boton1.grid(column=1, row=3, padx=4, pady=4)
+        
+    def poblar_mayoristas(self):
+        mayoristas = self.agencia1.obtener_mayoristas()  # Obtener lista de mayorista desde agencias
+        self.comboboxmayorista['values'] = mayoristas
 
     def agregar(self):
         datos=(self.cantempc.get(), self.direccionc.get())
@@ -49,6 +59,12 @@ class FormularioAgencias:
         mb.showinfo("Información", "Los datos fueron cargados")
         self.cantempc.set("")
         self.direccionc.set("")
+        
+    def agregar_mayorista(self):
+        datosmayo=(self.comboboxmayorista.get())
+        mb.showinfo("Información", "Los datos fueron cargados")
+        self.agencia1.alta_mayo(datosmayo)
+        self.comboboxmayorista.set("")
 
     def consulta_por_codigo(self):
         self.pagina2 = ttk.Frame(self.cuaderno1)

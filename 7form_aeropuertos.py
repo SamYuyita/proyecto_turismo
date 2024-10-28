@@ -40,15 +40,26 @@ class FormularioAeropuertos:
         self.entrycanthabc=ttk.Entry(self.labelframe1, textvariable=self.canthabc)
         self.entrycanthabc.grid(column=1, row=1, padx=4, pady=4)
         
+        self.label3=ttk.Label(self.labelframe1, text="Codigo pais:")    
+        self.label3.grid(column=0, row=2, padx=4, pady=4)
+        self.comboboxpais=ttk.Combobox(self.labelframe1, state="readonly")
+        self.comboboxpais.grid(column=1, row=2, padx=4, pady=4)
+        self.poblar_paises()  # Poblar los paises en el combobox
+        
         self.boton1=ttk.Button(self.labelframe1, text="Confirmar", command=self.agregar)
-        self.boton1.grid(column=1, row=2, padx=4, pady=4)
+        self.boton1.grid(column=1, row=3, padx=4, pady=4)
+        
+    def poblar_paises(self):
+        paises = self.aeropuerto1.obtener_paises()  # Obtener lista de paises desde aeropuertos
+        self.comboboxpais['values'] = paises
 
     def agregar(self):
-        datos=(self.descripcionc.get(), self.canthabc.get())
+        datos=(self.descripcionc.get(), self.canthabc.get(), self.comboboxpais.get())
         self.aeropuerto1.alta(datos)
         mb.showinfo("Información", "Los datos fueron cargados")
         self.descripcionc.set("")
         self.canthabc.set("")
+        self.comboboxpais.set("")
 
     def consulta_por_codigo(self):
         self.pagina2 = ttk.Frame(self.cuaderno1)

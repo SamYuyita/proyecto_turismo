@@ -14,7 +14,7 @@ class Reservas:
     def alta(self, datos):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="insert into reservas(asiento_vuelo_cliente, fecha_reserva) values (%s,%s)"
+        sql="insert into reservas(fk_id_hotel, fk_id_vuelo, asiento_vuelo_cliente, fecha_reserva, fk_id_cliente, fk_id_agencia) values (%s,%s,%s,%s,%s,%s)"
         cursor.execute(sql, datos)
         cone.commit()
         cone.close()
@@ -35,28 +35,47 @@ class Reservas:
         cone.close()
         return cursor.fetchall()
     
-    def obtener_datos(self):
+    def obtener_circuitos(self):
         cone=self.abrir()
         cursor=cone.cursor()
-        cursor.execute("SELECT dni_cliente FROM clientes")
+        cursor.execute("SELECT id_circuito FROM circuitos")
         resultados = cursor.fetchall()
         cone.close()
         return [fila[0] for fila in resultados]
     
-    # Función para buscar cliente por DNI
-    def buscar_cliente_por_dni(self, dni_cliente):
+    def obtener_hoteles(self):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="SELECT id_cliente FROM clientes WHERE dni_cliente = %s"
-        cursor.execute(sql, (dni_cliente))
-        result = cursor.fetchone()  # Obtiene una fila, si existe
-        cursor.close()
+        cursor.execute("SELECT id_hotel FROM hoteles")
+        resultados = cursor.fetchall()
+        cone.close()
+        return [fila[0] for fila in resultados]
     
-        if result:
-            return result[0]  # Devuelve el id_cliente
-        else:
-            return None  # El cliente no existe
-    # lastrowid' que almacena el código de artículo que se acaba de generar
-    # cursor.lastrowid
+    def obtener_vuelos(self):
+        cone=self.abrir()
+        cursor=cone.cursor()
+        cursor.execute("SELECT id_vuelo FROM vuelos")
+        resultados = cursor.fetchall()
+        cone.close()
+        return [fila[0] for fila in resultados]
+    
+    def obtener_clientes(self):
+        cone=self.abrir()
+        cursor=cone.cursor()
+        cursor.execute("SELECT id_cliente FROM clientes")
+        resultados = cursor.fetchall()
+        cone.close()
+        return [fila[0] for fila in resultados]
+    
+    def obtener_agencias(self):
+        cone=self.abrir()
+        cursor=cone.cursor()
+        cursor.execute("SELECT id_agencia FROM agencias")
+        resultados = cursor.fetchall()
+        cone.close()
+        return [fila[0] for fila in resultados]
+    
+    
+
     
     
