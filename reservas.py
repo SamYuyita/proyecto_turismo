@@ -1,4 +1,3 @@
-
 import mysql.connector
 
 class Reservas:
@@ -83,8 +82,3 @@ class Reservas:
         resultados = cursor.fetchall()
         cone.close()
         return [fila[0] for fila in resultados]
-    
-    
-
-    
-    
