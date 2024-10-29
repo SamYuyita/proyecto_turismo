@@ -72,12 +72,14 @@ class FormularioVuelos:
         self.comboboxapd['values'] = aeropuertos
 
     def agregar(self):
-        datos=(self.descripcionc.get(), self.horac.get(), self.asientoc.get())
+        datos=(self.descripcionc.get(), self.horac.get(), self.asientoc.get(), self.comboboxaps.get(), self.comboboxapd.get())
         self.vuelo1.alta(datos)
         mb.showinfo("Información", "Los datos fueron cargados")
         self.descripcionc.set("")
         self.horac.set("")
         self.asientoc.set("")
+        self.comboboxaps.set("")
+        self.comboboxapd.set("")
 
     def consulta_por_codigo(self):
         self.pagina2 = ttk.Frame(self.cuaderno1)

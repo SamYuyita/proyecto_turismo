@@ -45,7 +45,7 @@ class Mayoristas:
     def baja(self, datos):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="delete from mayorista where codigo=%s"
+        sql="delete from mayorista where id_mayorista=%s"
         cursor.execute(sql, datos)
         cone.commit()
         cone.close()

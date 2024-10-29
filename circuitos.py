@@ -45,7 +45,7 @@ class Circuitos:
     def baja(self, datos):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="delete from circuitos where codigo=%s"
+        sql="delete from circuitos where id_circuito=%s"
         cursor.execute(sql, datos)
         cone.commit()
         cone.close()

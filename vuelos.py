@@ -37,7 +37,7 @@ class Vuelos:
     def baja(self, datos):
         cone=self.abrir()
         cursor=cone.cursor()
-        sql="delete from vuelos where codigo=%s"
+        sql="delete from vuelos where id_vuelo=%s"
         cursor.execute(sql, datos)
         cone.commit()
         cone.close()

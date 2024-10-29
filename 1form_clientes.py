@@ -144,8 +144,8 @@ class FormularioClientes:
         self.labelframe3=ttk.LabelFrame(self.pagina3, text="Cliente")
         self.labelframe3.grid(column=0, row=0, padx=5, pady=10)
         
-        self.boton1=ttk.Button(self.labelframe3, text="Listado completo", command=self.listar)
-        self.boton1.grid(column=0, row=0, padx=4, pady=4)
+        self.boton3=ttk.Button(self.labelframe3, text="Listado completo", command=self.listar)
+        self.boton3.grid(column=0, row=0, padx=4, pady=4)
         self.scrolledtext1=st.ScrolledText(self.labelframe3, width=30, height=10)
         self.scrolledtext1.grid(column=0,row=1, padx=10, pady=10)
 
