@@ -31,7 +31,7 @@ ventana.state('zoomed')
 ventana.configure(bg='gray')
 
 etiqueta=tk.Label(ventana, text="Agencia de turismo", font=("Helvetica", 21, "bold"))
-etiqueta.pack(pady=50)
+etiqueta.pack(pady=40)
 
 botonclientes = tk.Button(ventana, text="Clientes", padx=20, command=abrir_clientes)
 botonclientes.pack(pady=20)
@@ -56,6 +56,9 @@ botonaeropuertos.pack(pady=20)
 
 botonreservas = tk.Button(ventana, text="Reservas", padx=20, command=abrir_reservas)
 botonreservas.pack(pady=20)
+
+botonsalir = tk.Button(ventana, text="Salir", padx=20, command=ventana.destroy)
+botonsalir.pack(pady=20)
 
 ventana.mainloop()
 
